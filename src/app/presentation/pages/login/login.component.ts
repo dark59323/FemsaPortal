@@ -1,6 +1,7 @@
 import { Component, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -77,15 +78,6 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
                 </p>
               </div>
 
-              <!-- Recordarme / Forgot -->
-              <div class="flex items-center justify-between text-lg md:text-xl">
-                <label class="inline-flex items-center gap-2 text-gray-700">
-                  <input type="checkbox" class="size-4 rounded border-gray-300 bg-transparent" />
-                  Recordarme
-                </label>
-                <a class="brand-link hover:underline" href="#">¿Olvidaste tu contraseña?</a>
-              </div>
-
               <!-- Botón -->
               <button
                 type="submit"
@@ -102,7 +94,8 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
   `,
 })
 export class LoginComponent {
-  private fb = new FormBuilder();
+    constructor(private router: Router) {}
+    private fb = new FormBuilder();
 
   form = this.fb.group({
     username: ['', [Validators.required, Validators.minLength(3)]],
@@ -120,12 +113,15 @@ export class LoginComponent {
   }
 
   async onSubmit() {
-    this._submitted.set(true);
-    if (this.form.invalid) return;
-    this.loading.set(true);
-    await new Promise((r) => setTimeout(r, 800));
-    this.loading.set(false);
-    console.log('Credenciales:', this.form.value);
-    // this.router.navigateByUrl('/home');
-  }
+  this._submitted.set(true);
+  if (this.form.invalid) return;
+
+  this.loading.set(true);
+  await new Promise((r) => setTimeout(r, 800));
+  this.loading.set(false);
+
+  console.log('Credenciales:', this.form.value);
+  this.router.navigate(['/home']);
+}
+
 }
