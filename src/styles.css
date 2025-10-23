@@ -9,14 +9,12 @@ html, body {
   overflow-x: auto;
 }
 
-/* ========= Base (variables + helpers) ========= */
 @layer base {
   :root{
     /* Marca (PMS 202) */
     --brand-700: rgb(153, 0, 33);
     --brand-800: rgb(134, 38, 51);
 
-    /* Grises corporativos */
     --bg-page:   rgb(255, 255, 255);  /* fondo general */
     --bg-coolgray-1: rgb(217, 217, 214); /*fondo gris claro*/
     --bg-coolgray-7: rgb(151, 153, 155); /*fondo gris */
@@ -27,7 +25,6 @@ html, body {
     --shadow-card-hero:  0 60px 120px rgba(18,25,38,.28);
   }
 
-  /* Fondo general */
   .bg-bg-page { background: var(--bg-page); }
 }
 
@@ -35,7 +32,6 @@ html, body {
   --color-brand-700: var(--brand-700);
 }
 
-/* ========= Componentes ========= */
 @layer components{
   .brand-title{
     @apply font-extrabold tracking-tight text-center uppercase;
@@ -64,7 +60,6 @@ html, body {
 
   .brand-link{ color: var(--brand-700); }
 }
-/* ========= Utilidades personalizadas ========= */
 @utility brand-card-2xl {
   background: var(--bg-page);
   @apply rounded-3xl shadow-[var(--shadow-card-hero)];
@@ -83,16 +78,13 @@ html, body {
 }
 
 .left-panel-bg {
-  /* altura de las franjas (ajustable) */
   --left-strip-height: 100px;
 
-  /* centro blanco (fondo del panel) */
   position: relative;
   overflow: hidden;
   background-color: var(--bg-page);
 }
 
-/* franjas usando pseudo-elementos; quedan debajo del contenido (imagen) */
 .left-panel-bg::before,
 .left-panel-bg::after {
   content: "";
@@ -104,19 +96,16 @@ html, body {
   z-index: 0;
 }
 
-/* franja superior: degradado hacia abajo */
 .left-panel-bg::before {
   top: 0;
   background: linear-gradient(180deg, color-mix(in srgb, var(--bg-coolgray-7) 90%, transparent), transparent);
 }
 
-/* franja inferior: degradado hacia arriba */
 .left-panel-bg::after {
   bottom: 0;
   background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--bg-coolgray-7) 90%, transparent));
 }
 
-/* asegurar que la imagen esté por encima y no tenga fondo */
 .left-panel-bg img {
   position: relative;
   z-index: 1;
