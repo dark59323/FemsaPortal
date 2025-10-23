@@ -4,11 +4,14 @@
 @layer base {
   :root{
     /* Marca (PMS 202) */
-    --brand-700: #98002e;
-    --brand-800: #7b0023;
+    --brand-700: rgb(153, 0, 33);
+    --brand-800: rgb(134, 38, 51);
 
     /* Grises corporativos */
-    --bg-page:   #eef1f3;  /* fondo general */
+    --bg-page:   rgb(255, 255, 255);  /* fondo general */
+    --bg-coolgray-1: rgb(217, 217, 214); /*fondo gris claro*/
+    --bg-coolgray-7: rgb(151, 153, 155); /*fondo gris */
+    --bg-coolgray-11: rgb(83, 86, 90); /*fondo gris oscuro*/
     --bg-left-1: #f6f8f9;  /* degradado panel logo (arriba) */
     --bg-left-2: #eceff2;  /* degradado panel logo (abajo) */
 
