@@ -8,12 +8,11 @@ import { Router } from '@angular/router';
   selector: 'app-login',
   imports: [CommonModule, ReactiveFormsModule],
   template: `
-    <!-- Fondo gris corporativo -->
     <div class="min-h-dvh bg-bg-page">
-      <!-- Pantalla 100% con división exactamente al centro -->
       <div class="grid min-h-dvh grid-cols-1 md:grid-cols-2">
-        <!-- IZQUIERDA: Logo (igual ancho que la derecha) -->
-        <div class="hidden md:flex items-center justify-center bg-gradient-to-b from-[var(--bg-left-1)] to-[var(--bg-left-2)]">
+        <div
+          class="hidden md:flex items-center justify-center bg-gradient-to-b from-[var(--bg-left-1)] to-[var(--bg-left-2)]"
+        >
           <img
             src="assets/brand/femsa-logo.png"
             alt="FEMSA Salud Ecuador"
@@ -22,15 +21,11 @@ import { Router } from '@angular/router';
             decoding="async"
           />
         </div>
-
-        <!-- DERECHA: Fondo vino + ÚNICA card blanca (hero) con el form -->
         <div class="flex items-center justify-center bg-brand-700 p-8 md:p-20">
-          <!-- Doble de grande: ancho hasta ~960px, casi todo el alto disponible -->
           <div class="brand-card-2xl w-[96%] max-w-4xl p-10 md:p-16">
             <h1 class="brand-title mb-12">Iniciar sesión</h1>
 
             <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-7">
-              <!-- Usuario -->
               <div>
                 <label for="username" class="brand-label">Usuario</label>
                 <input
@@ -48,8 +43,6 @@ import { Router } from '@angular/router';
                   Ingresa un usuario válido (mínimo 3 caracteres).
                 </p>
               </div>
-
-              <!-- Contraseña -->
               <div>
                 <label for="password" class="brand-label">Contraseña</label>
                 <div class="relative">
@@ -77,8 +70,6 @@ import { Router } from '@angular/router';
                   La contraseña es obligatoria (mínimo 6 caracteres).
                 </p>
               </div>
-
-              <!-- Botón -->
               <button
                 type="submit"
                 [disabled]="loading()"
@@ -94,8 +85,8 @@ import { Router } from '@angular/router';
   `,
 })
 export class LoginComponent {
-    constructor(private router: Router) {}
-    private fb = new FormBuilder();
+  constructor(private router: Router) {}
+  private fb = new FormBuilder();
 
   form = this.fb.group({
     username: ['', [Validators.required, Validators.minLength(3)]],
@@ -113,15 +104,14 @@ export class LoginComponent {
   }
 
   async onSubmit() {
-  this._submitted.set(true);
-  if (this.form.invalid) return;
+    this._submitted.set(true);
+    if (this.form.invalid) return;
 
-  this.loading.set(true);
-  await new Promise((r) => setTimeout(r, 800));
-  this.loading.set(false);
+    this.loading.set(true);
+    await new Promise((r) => setTimeout(r, 800));
+    this.loading.set(false);
 
-  console.log('Credenciales:', this.form.value);
-  this.router.navigate(['/home']);
-}
-
+    console.log('Credenciales:', this.form.value);
+    this.router.navigate(['/home']);
+  }
 }
