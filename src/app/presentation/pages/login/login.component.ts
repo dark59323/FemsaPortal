@@ -11,9 +11,9 @@ import { Router } from '@angular/router';
     <!-- Fondo gris corporativo -->
     <div class="min-h-dvh bg-bg-page">
       <!-- Pantalla 100% con división exactamente al centro -->
-      <div class="grid min-h-dvh grid-cols-1 md:grid-cols-2">
+      <div class="grid grid-cols-1 md:grid-cols-2">
         <!-- IZQUIERDA: Logo (igual ancho que la derecha) -->
-        <div class="hidden md:flex items-center justify-center bg-gradient-to-b from-[var(--bg-left-1)] to-[var(--bg-left-2)]">
+        <div class="hidden md:flex items-center justify-center left-panel-bg">
           <img
             src="assets/brand/femsa-logo.png"
             alt="FEMSA Salud Ecuador"
@@ -24,7 +24,7 @@ import { Router } from '@angular/router';
         </div>
 
         <!-- DERECHA: Fondo vino + ÚNICA card blanca (hero) con el form -->
-        <div class="flex items-center justify-center bg-brand-700 p-8 md:p-20">
+        <div class="flex items-center justify-center bg-brand-700 px-8 py-8 md:px-20 md:py-16">
           <!-- Doble de grande: ancho hasta ~960px, casi todo el alto disponible -->
           <div class="brand-card-2xl w-[96%] max-w-4xl p-10 md:p-16">
             <h1 class="brand-title mb-12">Iniciar sesión</h1>

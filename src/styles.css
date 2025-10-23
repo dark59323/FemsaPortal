@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
 /* ========= Base (variables + helpers) ========= */
 @layer base {
   :root{
@@ -12,8 +21,6 @@
     --bg-coolgray-1: rgb(217, 217, 214); /*fondo gris claro*/
     --bg-coolgray-7: rgb(151, 153, 155); /*fondo gris */
     --bg-coolgray-11: rgb(83, 86, 90); /*fondo gris oscuro*/
-    --bg-left-1: #f6f8f9;  /* degradado panel logo (arriba) */
-    --bg-left-2: #eceff2;  /* degradado panel logo (abajo) */
 
     /* Sombras */
     --shadow-card:       0 25px 55px rgba(0,0,0,.15), 0 15px 25px rgba(0,0,0,.08);
@@ -32,7 +39,7 @@
 @layer components{
   .brand-title{
     @apply font-extrabold tracking-tight text-center uppercase;
-    @apply text-3xl md:text-5xl;
+    @apply text-2xl md:text-3xl;
     color: var(--brand-700);
   }
 
@@ -59,7 +66,8 @@
 }
 /* ========= Utilidades personalizadas ========= */
 @utility brand-card-2xl {
-  @apply bg-white rounded-3xl shadow-[var(--shadow-card-hero)];
+  background: var(--bg-page);
+  @apply rounded-3xl shadow-[var(--shadow-card-hero)];
 }
 
 @utility brand-input-2xl {
@@ -72,5 +80,46 @@
 @utility brand-btn-2xl {
   @apply w-full rounded-2xl bg-brand-700 text-white font-semibold
          py-6 text-xl md:text-2xl hover:bg-brand-700/90 disabled:opacity-60;
+}
+
+.left-panel-bg {
+  /* altura de las franjas (ajustable) */
+  --left-strip-height: 100px;
+
+  /* centro blanco (fondo del panel) */
+  position: relative;
+  overflow: hidden;
+  background-color: var(--bg-page);
+}
+
+/* franjas usando pseudo-elementos; quedan debajo del contenido (imagen) */
+.left-panel-bg::before,
+.left-panel-bg::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: var(--left-strip-height);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* franja superior: degradado hacia abajo */
+.left-panel-bg::before {
+  top: 0;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--bg-coolgray-7) 90%, transparent), transparent);
+}
+
+/* franja inferior: degradado hacia arriba */
+.left-panel-bg::after {
+  bottom: 0;
+  background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--bg-coolgray-7) 90%, transparent));
+}
+
+/* asegurar que la imagen esté por encima y no tenga fondo */
+.left-panel-bg img {
+  position: relative;
+  z-index: 1;
+  background: transparent;
 }
 
